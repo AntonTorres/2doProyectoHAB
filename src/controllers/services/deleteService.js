@@ -14,6 +14,12 @@ const deleteService = async (req, res, next) => {
       generateError("El servicio no existe.", 400);
     }
 
+    const logedUserId = req.auth.id;
+
+    if (service.userId !== logedUserId) {
+      generateError("No tienes permiso para eliminar este servicio.", 401);
+    }
+
     await deleteServiceById(id);
 
     res

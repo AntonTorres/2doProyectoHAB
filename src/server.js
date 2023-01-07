@@ -4,15 +4,16 @@ const express = require("express");
 //Controladores usuarios
 const { createUser, loginUser } = require("./controllers/users");
 
-
 //Controladores servicios
-const { createService, getService, deleteService } = require("./controllers/services");
-
+const {
+  createService,
+  getService,
+  deleteService,
+  editService,
+} = require("./controllers/services");
 
 //Middlewares
-const { handleError, handleNotFound } = require("./middlewares");
-
-
+const { handleError, handleNotFound, validateR } = require("./middlewares");
 
 //
 const app = express();
@@ -22,24 +23,19 @@ const { PORT } = process.env;
 app.use(express.json());
 //
 
-
-
-//Endpoints users
+//Endpoints usuarios
 app.post("/users", createUser);
 app.post("/login", loginUser);
 
-
-//Endpoints services
-app.post("/services", createService);
+//Endpoints servicios
 app.get("/services", getService);
-app.delete("/services", deleteService);
-
+app.post("/services", validateR, createService);
+app.delete("/services/:id", validateR, deleteService);
+app.put("/services/:id", validateR, editService);
 
 // Endpoints errores
 app.use(handleNotFound);
 app.use(handleError);
-
-
 
 app.listen(PORT, () => {
   console.log(`Server listening on http://localhost:${PORT}`);

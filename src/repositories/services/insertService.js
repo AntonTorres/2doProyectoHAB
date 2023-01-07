@@ -1,11 +1,13 @@
 const getPool = require("../../database/getPool");
 
-const insertService = async (tittle, explication) => {
+const insertService = async (service) => {
+  const { tittle, explication, userId } = service;
+
   const pool = getPool();
 
   const [{ insertId }] = await pool.query(
-    "INSERT INTO services (tittle, explication, userId) VALUES (?, ?, 1)",
-    [tittle, explication]
+    "INSERT INTO services (tittle, explication, userId) VALUES (?, ?, ?)",
+    [tittle, explication, userId]
   );
   return insertId;
 };

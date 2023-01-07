@@ -4,32 +4,27 @@ const { insertService } = require("../../repositories/services");
 
 const createService = async (req, res, next) => {
   try {
-    const {authorization: token} = req.headers;
+    const userId = req.auth.id;
 
-    const tokenP = jwt.verify(token, process.env.JWT_SECRET);
-
-
-    
     const { tittle, explication } = req.body;
 
     if (!tittle || !explication) {
       generateError("Se requiere el título y la descripción", 400);
     }
 
-    const insertId = insertService(tittle, explication);
+    const insertId = await insertService({
+      tittle,
+      explication,
+      userId,
+    });
 
     res.status(201).send({
       status: "ok",
-      data: { id: insertId, tittle, explication, userId: 1 },
+      data: { id: insertId, tittle, explication, userId },
     });
-
-
   } catch (error) {
     next(error);
   }
 };
 
 module.exports = createService;
-
-
-
