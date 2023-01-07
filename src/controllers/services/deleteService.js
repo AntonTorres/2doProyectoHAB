@@ -3,10 +3,13 @@ const {
   selectServiceById,
   deleteServiceById,
 } = require("../../repositories/services");
+const { serviceIdSchema } = require("../../schemas/services");
 
 const deleteService = async (req, res, next) => {
   try {
     const { id } = req.params;
+
+    await serviceIdSchema.validateAsync(id);
 
     const service = await selectServiceById(id);
 

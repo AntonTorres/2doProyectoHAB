@@ -1,16 +1,13 @@
-const jwt = require("jsonwebtoken");
-const generateError = require("../../utils/generateError");
 const { insertService } = require("../../repositories/services");
+const { createSerSchema } = require("../../schemas/services");
 
 const createService = async (req, res, next) => {
   try {
     const userId = req.auth.id;
 
-    const { tittle, explication } = req.body;
+    await createSerSchema.validateAsync(req.body);
 
-    if (!tittle || !explication) {
-      generateError("Se requiere el título y la descripción", 400);
-    }
+    const { tittle, explication } = req.body;
 
     const insertId = await insertService({
       tittle,

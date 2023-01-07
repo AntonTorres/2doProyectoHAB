@@ -1,14 +1,13 @@
 const bcrypt = require("bcrypt");
 const generateError = require("../../utils/generateError");
 const { selectUserByEmail, insertUser } = require("../../repositories/users");
+const { createUserSchema } = require("../../schemas/users");
 
 const createUser = async (req, res, next) => {
   try {
-    const { name, password, email } = req.body;
+    await createUserSchema.validateAsync(req.body);
 
-    if (!name || !password || !email) {
-      generateError("Se requiere nombre, contraseña y email", 400);
-    }
+    const { name, password, email } = req.body;
 
     const userWithSameEmail = await selectUserByEmail(email);
 
