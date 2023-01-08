@@ -29,5 +29,13 @@ CREATE TABLE comments (
     FOREIGN KEY (serviceId) REFERENCES services(id) 
 );
 
+CREATE TABLE likes (
+	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    userId INT UNSIGNED NOT NULL,
+    serviceId INT UNSIGNED NOT NULL,
+    FOREIGN KEY (userId) REFERENCES users(id),
+    FOREIGN KEY (serviceId) REFERENCES services(id)
+);
+
 
 INSERT INTO users (name, password, email) VALUES ("Pepe", "123456", "pepe@email.com");

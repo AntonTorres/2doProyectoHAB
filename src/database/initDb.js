@@ -5,6 +5,7 @@ const initDb = async () => {
   try {
     const pool = getPool();
 
+    await pool.query("DROP TABLE IF EXISTS likes;");
     await pool.query("DROP TABLE IF EXISTS comments;");
     await pool.query("DROP TABLE IF EXISTS services;");
     await pool.query("DROP TABLE IF EXISTS users;");
@@ -42,8 +43,15 @@ const initDb = async () => {
             FOREIGN KEY (serviceId) REFERENCES services(id) 
         );
         `);
-    await pool.query(`
-        INSERT INTO users (name, password, email) VALUES ("Pepe", "123456", "pepe@email.com");`);
+
+    await pool.query(`CREATE TABLE likes (
+          id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+            userId INT UNSIGNED NOT NULL,
+            serviceId INT UNSIGNED NOT NULL,
+            FOREIGN KEY (userId) REFERENCES users(id),
+            FOREIGN KEY (serviceId) REFERENCES services(id)
+        );
+        `);
 
     console.log("Created!");
   } catch (error) {
