@@ -44,15 +44,6 @@ const initDb = async () => {
         );
         `);
 
-    await pool.query(`CREATE TABLE likes (
-          id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-            userId INT UNSIGNED NOT NULL,
-            serviceId INT UNSIGNED NOT NULL,
-            FOREIGN KEY (userId) REFERENCES users(id),
-            FOREIGN KEY (serviceId) REFERENCES services(id)
-        );
-        `);
-
     console.log("Created!");
   } catch (error) {
     console.error(error.message);
