@@ -13,6 +13,9 @@ const {
   getSerById
 } = require("./controllers/services");
 
+//Controladores comentarios
+const { createComment, deleteComment } = require("./controllers/comments");
+
 //Middlewares
 const { handleError, handleNotFound, validateR } = require("./middlewares");
 
@@ -40,7 +43,8 @@ app.put("/services/:id", validateR, editService);
 //app.put("/services/:id", validateR, resolvedService);
  
 //Endpoints comentarios 
-//app.post("/services/:id/comment", validateR, createComment); */
+app.post("/services/:id/comment", validateR, createComment); 
+app.delete("/services/:id/comment", validateR, deleteComment);
 
 // Endpoints errores
 app.use(handleNotFound);
@@ -48,4 +52,4 @@ app.use(handleError);
 
 app.listen(PORT, () => {
   console.log(`Server listening on http://localhost:${PORT}`);
-});
+}); 

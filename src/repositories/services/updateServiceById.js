@@ -6,8 +6,8 @@ const updateServiceById = async (service) => {
   const pool = getPool();
 
   await pool.query(
-    "UPDATE services SET tittle = ?, explication = ? WHERE id = ?",
-    [tittle, explication, id]
+    "UPDATE services SET tittle = ?, explication = ?",
+    [tittle, explication]
   );
 };
 
