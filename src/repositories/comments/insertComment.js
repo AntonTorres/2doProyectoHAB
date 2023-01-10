@@ -1,6 +1,6 @@
 const getPool = require("../../database/getPool");
 
-const insertComment = async (comment, userId, serviceId) => {
+const insertComment = async (comment, userId, serviceId)=> {
   const pool = getPool();
 
   const [{ insertId }] = await pool.query(

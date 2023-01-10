@@ -2,7 +2,9 @@ const { selectUserById } = require("../../repositories/users");
 
 const logedUser = async (req, res, next) => {
   try {
-    const user = await selectUserById();
+
+    const {id} = req.params;
+    const user = await selectUserById(id);
 
     res.status(200).send({ status: "ok", data: user });
   } catch (error) {

@@ -30,13 +30,13 @@ app.use(express.json());
 //Endpoints usuarios
 app.post("/users", createUser);
 app.post("/login", loginUser);
-app.get("/users/:id", validateR, logedUser); // No devuelve los datos del usuario?
+app.get("/users/:id", validateR, logedUser); 
 app.put("/users/:id", validateR, editUser);
 app.delete("/users/:id", validateR, deleteUser);
 
 //Endpoints servicios
 app.get("/services", getService);
-app.get("/services/:id", getSerById); // No devuelve los datos del servicio?
+app.get("/services/:id", getSerById); 
 app.post("/services", validateR, createService);
 app.delete("/services/:id", validateR, deleteService);
 app.put("/services/:id", validateR, editService);
@@ -45,6 +45,7 @@ app.put("/services/:id", validateR, editService);
 //Endpoints comentarios 
 app.post("/services/:id/comment", validateR, createComment); 
 app.delete("/services/:id/comment", validateR, deleteComment);
+//app.put("/services/:id/comment"), validateR, updateComment);
 
 // Endpoints errores
 app.use(handleNotFound);

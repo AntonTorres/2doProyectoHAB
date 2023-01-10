@@ -24,8 +24,8 @@ const deleteCommente = async (req, res, next) => {
     const loggedUserId = req.auth.id;
 
     const comment = await selectCommentBySerAndUser(serviceId, loggedUserId);
-
-    if (comment !== 0) {
+    
+    if (comment) {
       await deleteComment(serviceId, loggedUserId);
     } else {
       generateError("No has comentado este servicio.", 400);

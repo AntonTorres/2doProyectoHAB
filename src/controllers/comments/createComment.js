@@ -22,7 +22,7 @@ const createComment = async (req, res, next) => {
       throw generateError("Ya has comentado el servicio seleccionado.", 400);
     }
 
-    const comment = req.body;
+    const {comment} = req.body;
     await insertComment(comment, serviceId, loggedUserId);
 
     res.status(200).send({ status: "ok", data: { comment } });
