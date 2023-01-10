@@ -23,9 +23,9 @@ const editService = async (req, res, next) => {
       generateError("No tienes permiso para modificar este servicio.", 401);
     }
 
-    const { tittle, explication } = req.body;
+    const { tittle, explication, resolve } = req.body;
 
-    if (!tittle && !explication) {
+    if (!tittle && !explication && !resolve) {
       generateError("Necesitas realizar una modificación.", 400);
     }
 

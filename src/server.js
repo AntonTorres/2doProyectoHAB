@@ -40,12 +40,10 @@ app.get("/services/:id", getSerById);
 app.post("/services", validateR, createService);
 app.delete("/services/:id", validateR, deleteService);
 app.put("/services/:id", validateR, editService);
-//app.put("/services/:id", validateR, resolvedService);
  
 //Endpoints comentarios 
 app.post("/services/:id/comment", validateR, createComment); 
 app.delete("/services/:id/comment", validateR, deleteComment);
-//app.put("/services/:id/comment"), validateR, updateComment);
 
 // Endpoints errores
 app.use(handleNotFound);
