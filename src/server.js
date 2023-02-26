@@ -1,8 +1,15 @@
 require("dotenv").config();
 const express = require("express");
+const fileUpload = require("express-fileupload");
 
 //Controladores usuarios
-const { createUser, loginUser, logedUser, editUser, deleteUser } = require("./controllers/users");
+const {
+  createUser,
+  loginUser,
+  logedUser,
+  editUser,
+  deleteUser,
+} = require("./controllers/users");
 
 //Controladores servicios
 const {
@@ -10,7 +17,7 @@ const {
   getService,
   deleteService,
   editService,
-  getSerById
+  getSerById,
 } = require("./controllers/services");
 
 //Controladores comentarios
@@ -25,6 +32,7 @@ const app = express();
 const { PORT } = process.env;
 
 app.use(express.json());
+app.use(fileUpload());
 //
 
 //Endpoints usuarios

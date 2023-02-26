@@ -31,7 +31,9 @@ const deleteCommente = async (req, res, next) => {
       generateError("No has comentado este servicio.", 400);
     }
 
-    res.status(200).send({ status: "ok" });
+    res
+      .status(200)
+      .send({ status: "ok", message: "Comentario eliminado correctamente." });
   } catch (error) {
     next(error);
   }

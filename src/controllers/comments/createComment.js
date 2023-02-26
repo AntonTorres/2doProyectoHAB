@@ -25,7 +25,11 @@ const createComment = async (req, res, next) => {
     const {comment} = req.body;
     await insertComment(comment, serviceId, loggedUserId);
 
-    res.status(200).send({ status: "ok", data: { comment } });
+    res.status(200).send({
+      status: "ok",
+      message: "Comentario creado correctamente.",
+      data: { comment },
+    });
   } catch (error) {
     next(error);
   }
