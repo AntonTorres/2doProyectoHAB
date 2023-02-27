@@ -18,12 +18,6 @@ const createUser = async (req, res, next) => {
 
     const encryptedPass = await bcrypt.hash(password, 10);
 
-    /* const photo = req.files && req.files.photo ? req.files.photo : null;
-
-    const photoName = photo
-      ? await processAndSavePhoto(photo.data)
-      : "default.png"; */
-
     let photoName = null;
     if (req.files && req.files.photo) {
       const photo = req.files.photo;

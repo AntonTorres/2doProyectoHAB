@@ -10,7 +10,7 @@ const createService = async (req, res, next) => {
 
     const { tittle, explication, resolve } = req.body;
 
-    const files = req.files.files;
+    const files = req.files.files || [];
 
     const fileArr = Array.isArray(files) ? files : [files];
     const fileNames = [];

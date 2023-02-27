@@ -38,7 +38,7 @@ app.use(fileUpload());
 //Endpoints usuarios
 app.post("/users", createUser);
 app.post("/login", loginUser);
-app.get("/users/:id", validateR, logedUser); 
+app.get("/users/:id", validateR, logedUser);
 app.put("/users/:id", validateR, editUser);
 app.delete("/users/:id", validateR, deleteUser);
 
